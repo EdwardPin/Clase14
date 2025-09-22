@@ -35,7 +35,7 @@ int main() {
     struct Node* current = NULL;
 
     // Crear 1000 nodos
-    for (int i = 0; i <= 1000; i++) {
+    for (int i = 0; i <= 10000000; i++) {
         struct Node* newNode = createNode(i); // Crear nodo con el número i
 
         if (head == NULL) {

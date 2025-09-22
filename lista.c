@@ -77,4 +77,6 @@ int main(){
     //Para finalizar la aplicacion
 
     return 0;
+
+    //Hacer otros 2 listados enlazados
 }

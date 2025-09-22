@@ -30,7 +30,7 @@ def create_linked_list(n):
 # Main
 if __name__ == "__main__":
     # Crear la lista con nodos de 0 a 1000
-    head = create_linked_list(1000)
+    head = create_linked_list(10000000)
     
     # Imprimir la lista
     print_list(head)
