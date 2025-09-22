@@ -55,7 +55,7 @@ int main() {
     }
 
     // Imprimir la lista
-    printList(head);
+printList(head);
 
     // Liberar memoria
     freeList(head);
