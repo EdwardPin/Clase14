@@ -20,7 +20,7 @@ struct Node* createNode(int data){
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node*));
     if (newNode == NULL){
         printf("Error: Memoria no reservada");
-        exist(1);
+        exit(1);
 
         //exist es para acabar el programa si no hay memoria suficiente
     }
@@ -40,8 +40,8 @@ struct Node* createNode(int data){
 
 void printlist(struct Node* head){
     struct Node* temp = head;
-    while (temp =! NULL){
-        printf("%d ->",temp->data);
+    while (temp != NULL){
+        printf("%d -> ",temp->data);
         temp = temp->next;
     }
     printf("NULL\n");
@@ -66,4 +66,15 @@ int main(){
     first -> next = second;
     second -> next = third;
 
+    printlist(head);
+
+    //Despues de pedir memoria, hay que liberarla
+    free(head);
+    free(first);
+    free(second);
+    free(third);
+
+    //Para finalizar la aplicacion
+
+    return 0;
 }
