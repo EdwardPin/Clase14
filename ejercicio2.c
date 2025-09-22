@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-//listas del abecedario
+#include <time.h>
+//Numeros flotantes aleatorios
 struct Node {
-    char data;
+    float data;
     struct Node* next;
 };
 
-// Crear un nodo con un caracter
-struct Node* createNode(char data) {
+// Crear un nodo con un float
+struct Node* createNode(float data) {
     struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
     if (newNode == NULL) {
         printf("Error: Memoria no reservada\n");
@@ -22,7 +23,7 @@ struct Node* createNode(char data) {
 void printList(struct Node* head) {
     struct Node* temp = head;
     while (temp != NULL) {
-        printf("%c -> ", temp->data);
+        printf("%.2f -> ", temp->data);
         temp = temp->next;
     }
     printf("NULL\n");
@@ -42,9 +43,13 @@ int main() {
     struct Node* head = NULL;
     struct Node* current = NULL;
 
-    // Crear nodos con letras del abecedario de 'a' a 'z'
-    for (char c = 'a'; c <= 'z'; c++) {
-        struct Node* newNode = createNode(c);
+    srand(time(NULL)); // Inicializar la semilla para números aleatorios
+
+    int n = 10; // Número de nodos que quieres crear
+
+    for (int i = 0; i < n; i++) {
+        float randomFloat = ((float) rand() / RAND_MAX) * 100.0f; // Generar float entre 0 y 100
+        struct Node* newNode = createNode(randomFloat);
 
         if (head == NULL) {
             head = newNode;
