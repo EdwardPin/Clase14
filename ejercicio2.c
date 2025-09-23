@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-//Numeros flotantes aleatorios
+
+// Estructura para almacenar cada número
 struct Node {
-    float data;
+    int data;
     struct Node* next;
 };
 
-// Crear un nodo con un float
-struct Node* createNode(float data) {
+// Función para crear un nodo con un número
+struct Node* createNode(int data) {
     struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
     if (newNode == NULL) {
         printf("Error: Memoria no reservada\n");
@@ -19,17 +19,22 @@ struct Node* createNode(float data) {
     return newNode;
 }
 
-// Imprimir la lista enlazada
+// Función para imprimir todos los números de la lista
 void printList(struct Node* head) {
     struct Node* temp = head;
+    if (temp == NULL) {
+        printf("No hay números ingresados.\n");
+        return;
+    }
+    printf("Números ingresados:\n");
     while (temp != NULL) {
-        printf("%.2f -> ", temp->data);
+        printf("%d -> ", temp->data);
         temp = temp->next;
     }
     printf("NULL\n");
 }
 
-// Liberar memoria de la lista enlazada
+// Función para liberar memoria de la lista
 void freeList(struct Node* head) {
     struct Node* temp;
     while (head != NULL) {
@@ -42,15 +47,19 @@ void freeList(struct Node* head) {
 int main() {
     struct Node* head = NULL;
     struct Node* current = NULL;
+    int input;
 
-    srand(time(NULL)); // Inicializar la semilla para números aleatorios
+    while (1) {
+        printf("Introduce un número entero (o un caracter para terminar de ingresar): ");
+        if (scanf("%d", &input) != 1) {
+            // Si no se ingresa un número, salir del ciclo
+            break;
+        }
 
-    int n = 10; // Número de nodos que quieres crear
+        // Crear un nuevo nodo con el número ingresado
+        struct Node* newNode = createNode(input);
 
-    for (int i = 0; i < n; i++) {
-        float randomFloat = ((float) rand() / RAND_MAX) * 100.0f; // Generar float entre 0 y 100
-        struct Node* newNode = createNode(randomFloat);
-
+        // Si es el primer nodo, asignar a head
         if (head == NULL) {
             head = newNode;
         } else {
@@ -59,10 +68,10 @@ int main() {
         current = newNode;
     }
 
-    // Imprimir la lista
+    // Mostrar la lista de números ingresados
     printList(head);
 
-    // Liberar memoria
+    // Liberar memoria de la lista
     freeList(head);
 
     return 0;
